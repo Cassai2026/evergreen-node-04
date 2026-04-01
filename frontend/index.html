@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evergreen Stretford — Sovereign Node 04</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- ============================================================
+       HEADER / NAV
+  ============================================================ -->
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+        <span class="brand-mark">⬡</span>
+        <div class="brand-text">
+          <span class="brand-name">EVERGREEN</span>
+          <span class="brand-sub">STRETFORD · NODE 04</span>
+        </div>
+      </div>
+
+      <nav class="main-nav" id="mainNav">
+        <a href="#menu" class="nav-link" data-section="menu">MENU</a>
+        <a href="#cart" class="nav-link" data-section="cart">CART <span class="cart-badge" id="cartBadge">0</span></a>
+        <a href="#signal" class="nav-link" data-section="signal">SIGNAL</a>
+        <a href="#concierge" class="nav-link" data-section="concierge">CONCIERGE</a>
+      </nav>
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="hero">
+    <div class="hero-inner container">
+      <div class="hero-eyebrow">[ACTIVE_SIGNAL] · SOVEREIGN_NODE_04 · MOSS PARK</div>
+      <h1 class="hero-title">
+        EVERGREEN<br />
+        <span class="hero-title-accent">STRETFORD</span>
+      </h1>
+      <p class="hero-subtitle">
+        Community-owned. Edge-powered. Locally sovereign.<br />
+        Order fresh — direct from the node.
+      </p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">VIEW MENU</a>
+        <a href="#signal" class="btn btn-outline">ACTIVATE SIGNAL</a>
+      </div>
+    </div>
+    <div class="hero-overlay" aria-hidden="true"></div>
+  </section>
+
+  <!-- ============================================================
+       MENU SECTION
+  ============================================================ -->
+  <section class="section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">THE MENU</h2>
+        <p class="section-sub">Fresh. Local. Sovereign.</p>
+      </div>
+
+      <!-- Category filter tabs -->
+      <div class="category-tabs" id="categoryTabs" role="tablist">
+        <button class="tab-btn active" data-category="all" role="tab">ALL</button>
+        <!-- Populated dynamically -->
+      </div>
+
+      <!-- Search bar -->
+      <div class="search-bar">
+        <input
+          type="search"
+          id="menuSearch"
+          placeholder="Search the menu…"
+          aria-label="Search menu items"
+        />
+      </div>
+
+      <!-- Menu grid -->
+      <div class="menu-grid" id="menuGrid" role="list">
+        <!-- Populated by app.js -->
+        <div class="loading-state" id="menuLoading">
+          <div class="spinner"></div>
+          <p>Loading menu from edge node…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CART / ORDER SECTION
+  ============================================================ -->
+  <section class="section section-dark" id="cart">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">YOUR ORDER</h2>
+      </div>
+
+      <div class="cart-layout">
+        <div class="cart-items" id="cartItems">
+          <p class="empty-state" id="cartEmpty">Your cart is empty. Add items from the menu above.</p>
+        </div>
+
+        <div class="cart-summary" id="cartSummary">
+          <div class="summary-card">
+            <h3 class="summary-title">ORDER SUMMARY</h3>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span id="cartSubtotal">£0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Items</span>
+              <span id="cartItemCount">0</span>
+            </div>
+            <div class="summary-divider"></div>
+            <div class="summary-row summary-total">
+              <span>TOTAL</span>
+              <span id="cartTotal">£0.00</span>
+            </div>
+
+            <div class="order-form" id="orderForm">
+              <input
+                type="text"
+                id="customerName"
+                placeholder="Your name (optional)"
+                class="form-input"
+                maxlength="80"
+              />
+              <textarea
+                id="customerNote"
+                placeholder="Special instructions…"
+                class="form-input form-textarea"
+                rows="3"
+                maxlength="500"
+              ></textarea>
+              <button class="btn btn-primary btn-full" id="placeOrderBtn">
+                PLACE ORDER
+              </button>
+            </div>
+
+            <div class="order-confirmation hidden" id="orderConfirmation">
+              <div class="confirmation-icon">✓</div>
+              <p class="confirmation-text">Order placed successfully!</p>
+              <button class="btn btn-outline btn-full" id="newOrderBtn">START NEW ORDER</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       WEBRTC — ACTIVATE SIGNAL
+  ============================================================ -->
+  <section class="section" id="signal">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">ACTIVATE SIGNAL</h2>
+        <p class="section-sub">Sovereign peer-to-peer communication mesh — WebRTC</p>
+      </div>
+
+      <div class="signal-panel">
+        <div class="signal-status" id="signalStatus">
+          <div class="status-indicator idle" id="statusIndicator"></div>
+          <span id="statusLabel">SIGNAL INACTIVE</span>
+        </div>
+
+        <div class="signal-controls">
+          <div class="signal-form">
+            <label class="form-label" for="peerIdDisplay">YOUR PEER ID</label>
+            <div class="peer-id-row">
+              <input
+                type="text"
+                id="peerIdDisplay"
+                class="form-input peer-id-input"
+                readonly
+                placeholder="Generating…"
+              />
+              <button class="btn btn-outline btn-icon" id="copyPeerIdBtn" title="Copy Peer ID">
+                ⧉
+              </button>
+            </div>
+
+            <label class="form-label" for="remotePeerId">CONNECT TO PEER</label>
+            <input
+              type="text"
+              id="remotePeerId"
+              class="form-input"
+              placeholder="Enter remote peer ID…"
+              maxlength="100"
+            />
+
+            <div class="signal-btn-row">
+              <button class="btn btn-primary" id="activateSignalBtn">ACTIVATE SIGNAL</button>
+              <button class="btn btn-danger hidden" id="deactivateSignalBtn">DEACTIVATE</button>
+            </div>
+          </div>
+
+          <div class="signal-video-area">
+            <div class="video-container">
+              <video id="localVideo" autoplay muted playsinline class="video-feed"></video>
+              <span class="video-label">LOCAL</span>
+            </div>
+            <div class="video-container">
+              <video id="remoteVideo" autoplay playsinline class="video-feed"></video>
+              <span class="video-label">REMOTE</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="signal-log-container">
+          <h4 class="log-title">SIGNAL LOG</h4>
+          <div class="signal-log" id="signalLog" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       GEMINI CONCIERGE (AI Placeholder)
+  ============================================================ -->
+  <section class="section section-dark" id="concierge">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">JARVIS CONCIERGE</h2>
+        <p class="section-sub">
+          Powered by Google Gemini Pro · AI-automated customer assistant
+        </p>
+        <div class="badge badge-dev">GEMINI PRO API — INTEGRATION READY</div>
+      </div>
+
+      <div class="concierge-panel">
+        <div class="chat-window" id="chatWindow" aria-live="polite">
+          <div class="chat-message bot-message">
+            <div class="message-avatar">J</div>
+            <div class="message-bubble">
+              <strong>JARVIS</strong><br />
+              Welcome to Evergreen Stretford, Sovereign Node 04. I'm JARVIS — your
+              AI concierge. How can I assist you today? Ask me about our menu,
+              place an order, or enquire about our community logistics network.
+              <em class="api-note">[Gemini Pro API integration pending — responses are simulated]</em>
+            </div>
+          </div>
+        </div>
+
+        <div class="chat-input-row">
+          <input
+            type="text"
+            id="chatInput"
+            class="form-input chat-input"
+            placeholder="Ask JARVIS anything…"
+            maxlength="500"
+            aria-label="Message JARVIS"
+          />
+          <button class="btn btn-primary" id="chatSendBtn">SEND</button>
+        </div>
+
+        <div class="concierge-info">
+          <div class="info-card">
+            <h4>Integration Status</h4>
+            <ul class="status-list">
+              <li class="status-item pending">
+                <span class="status-dot"></span>
+                Google Gemini Pro API — Awaiting API key configuration
+              </li>
+              <li class="status-item pending">
+                <span class="status-dot"></span>
+                Menu-aware response context — Placeholder active
+              </li>
+              <li class="status-item pending">
+                <span class="status-dot"></span>
+                Order intent detection — Placeholder active
+              </li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h4>To Activate Gemini Pro</h4>
+            <p>Set your API key in <code>backend/app.py</code>:</p>
+            <pre class="code-block">GEMINI_API_KEY = "your-key-here"</pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="brand-mark">⬡</span>
+        <span>EVERGREEN STRETFORD</span>
+      </div>
+      <div class="footer-meta">
+        <span>SOVEREIGN NODE 04</span>
+        <span class="separator">·</span>
+        <span>MOSS PARK, MANCHESTER</span>
+        <span class="separator">·</span>
+        <span>[ACTIVE_SIGNAL]</span>
+      </div>
+      <div class="footer-legal">
+        <small>
+          Experimental Development Node — UK R&amp;D Tax Relief Reference
+          (CIRD80000) · 13/33 Equity Ledger Model
+        </small>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       TOAST NOTIFICATION
+  ============================================================ -->
+  <div class="toast" id="toast" aria-live="assertive" role="status"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

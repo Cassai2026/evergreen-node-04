@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Evergreen Junior Dev Lab — Node 04</title>
+  <link rel="stylesheet" href="style.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+    rel="stylesheet"
+  />
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="jd-header">
+    <div class="jd-header-inner">
+      <div class="jd-brand">
+        <span class="jd-logo" aria-hidden="true">🌿</span>
+        <div>
+          <div class="jd-brand-name">JUNIOR DEV LAB</div>
+          <div class="jd-brand-sub">Evergreen · Node 04</div>
+        </div>
+      </div>
+
+      <div class="jd-score-panel">
+        <div class="score-item">
+          <span class="score-icon">⭐</span>
+          <span class="score-label">XP</span>
+          <span class="score-value" id="xpDisplay">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-icon">🏅</span>
+          <span class="score-label">LEVEL</span>
+          <span class="score-value" id="levelDisplay">1</span>
+        </div>
+        <div class="score-item">
+          <span class="score-icon">🔥</span>
+          <span class="score-label">STREAK</span>
+          <span class="score-value" id="streakDisplay">0</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PROGRESS BAR -->
+  <div class="xp-bar-container">
+    <div class="xp-bar" id="xpBar" style="width: 0%"></div>
+  </div>
+
+  <!-- HERO -->
+  <section class="jd-hero">
+    <div class="jd-hero-inner">
+      <h1 class="jd-hero-title">Welcome, Junior Dev! 👋</h1>
+      <p class="jd-hero-sub">
+        Help keep the Evergreen menu up to date.<br />
+        Every item you add or update earns you XP. Can you reach Level 10?
+      </p>
+      <div class="jd-hero-badges" id="badgeDisplay">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="jd-main">
+
+    <!-- MISSION PANEL -->
+    <section class="jd-panel mission-panel">
+      <h2 class="panel-title">🎯 Your Mission</h2>
+      <div class="missions" id="missions">
+        <!-- Populated by JS -->
+      </div>
+    </section>
+
+    <!-- ADD MENU ITEM FORM -->
+    <section class="jd-panel form-panel">
+      <h2 class="panel-title">➕ Add a Menu Item</h2>
+      <p class="panel-sub">Fill in the details below to add a new item to the Evergreen menu.</p>
+
+      <form id="addItemForm" class="jd-form" novalidate>
+
+        <div class="form-group">
+          <label class="jd-label" for="itemName">
+            Item Name <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="itemName"
+            class="jd-input"
+            placeholder="e.g. Chocolate Milkshake"
+            maxlength="80"
+            required
+            autocomplete="off"
+          />
+          <div class="field-feedback" id="nameFeedback"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="jd-label" for="itemDescription">Description</label>
+          <textarea
+            id="itemDescription"
+            class="jd-input jd-textarea"
+            placeholder="Describe what makes it special…"
+            maxlength="300"
+            rows="3"
+          ></textarea>
+          <div class="char-counter"><span id="descCounter">0</span>/300</div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="jd-label" for="itemCategory">
+              Category <span class="required">*</span>
+            </label>
+            <select id="itemCategory" class="jd-input jd-select" required>
+              <option value="">Pick a category…</option>
+              <option>Hot Drinks</option>
+              <option>Cold Drinks</option>
+              <option>Breakfast</option>
+              <option>Lunch</option>
+              <option>Kids</option>
+              <option>Cakes</option>
+              <option>Snacks</option>
+              <option>Sides</option>
+              <option>Retail</option>
+              <option>New Category</option>
+            </select>
+            <div class="field-feedback" id="catFeedback"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="jd-label" for="itemPrice">
+              Price (£) <span class="required">*</span>
+            </label>
+            <input
+              type="number"
+              id="itemPrice"
+              class="jd-input"
+              placeholder="0.00"
+              min="0"
+              max="999"
+              step="0.01"
+              required
+            />
+            <div class="field-feedback" id="priceFeedback"></div>
+          </div>
+        </div>
+
+        <!-- New category field (shown when "New Category" selected) -->
+        <div class="form-group hidden" id="newCategoryGroup">
+          <label class="jd-label" for="newCategoryName">New Category Name</label>
+          <input
+            type="text"
+            id="newCategoryName"
+            class="jd-input"
+            placeholder="Type your new category…"
+            maxlength="50"
+          />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="jd-btn jd-btn-primary" id="submitBtn">
+            🚀 ADD TO MENU
+          </button>
+          <button type="button" class="jd-btn jd-btn-outline" id="clearBtn">
+            🔄 CLEAR
+          </button>
+        </div>
+      </form>
+
+      <!-- Success animation -->
+      <div class="success-burst hidden" id="successBurst">
+        <div class="burst-emoji" id="burstEmoji">🎉</div>
+        <div class="burst-text" id="burstText">+50 XP!</div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD / ITEMS LOG -->
+    <section class="jd-panel log-panel">
+      <h2 class="panel-title">📋 Items You've Added</h2>
+      <div id="itemLog" class="item-log">
+        <p class="log-empty" id="logEmpty">No items added yet. Be the first!</p>
+      </div>
+    </section>
+
+    <!-- HOW TO PLAY -->
+    <section class="jd-panel help-panel">
+      <h2 class="panel-title">📖 How to Play</h2>
+      <div class="help-grid">
+        <div class="help-card">
+          <div class="help-icon">✏️</div>
+          <h3>1. Fill the Form</h3>
+          <p>Enter the item name, description, category, and price. All starred fields are required.</p>
+        </div>
+        <div class="help-card">
+          <div class="help-icon">🚀</div>
+          <h3>2. Submit & Earn XP</h3>
+          <p>Hit "Add to Menu" to submit. Every valid item earns you <strong>50 XP</strong>. Bonus XP for descriptions!</p>
+        </div>
+        <div class="help-card">
+          <div class="help-icon">⭐</div>
+          <h3>3. Level Up</h3>
+          <p>Earn enough XP to advance through 10 levels — from Apprentice Dev to Sovereign Engineer!</p>
+        </div>
+        <div class="help-card">
+          <div class="help-icon">🏆</div>
+          <h3>4. Earn Badges</h3>
+          <p>Complete missions to unlock special badges. How many can you collect?</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- LEVEL-UP OVERLAY -->
+  <div class="levelup-overlay hidden" id="levelUpOverlay">
+    <div class="levelup-card">
+      <div class="levelup-emoji">🎊</div>
+      <h2 class="levelup-title">LEVEL UP!</h2>
+      <p class="levelup-sub">You reached <strong id="levelUpNum">Level 2</strong></p>
+      <p class="levelup-rank" id="levelUpRank">Junior Developer</p>
+      <button class="jd-btn jd-btn-primary" id="levelUpClose">AWESOME! ✊</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="jd-toast" id="jdToast"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
