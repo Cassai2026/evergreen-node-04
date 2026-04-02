@@ -543,14 +543,13 @@ const Signal = (() => {
 const Concierge = (() => {
   // Simulated JARVIS responses for demo mode
   const DEMO_RESPONSES = [
-    "I'd recommend our Flat White — a double ristretto with beautifully steamed milk, a favourite here at Evergreen. Can I add it to your order?",
-    "Our Full English Breakfast is the most popular item on the menu. Served fresh every morning until 11:30. Would you like to order one?",
-    "Evergreen Stretford is a community-owned café in Moss Park, Manchester. We're part of the Sovereign Node 04 initiative — locally owned, edge-powered infrastructure for the community.",
-    "We serve a wide range of hot drinks, cold drinks, breakfast items, lunch mains, cakes, snacks, and kids' options. What are you in the mood for?",
-    "Our daily specials change — ask a team member when you visit! I can help you browse our full menu or place an order.",
-    "The JARVIS system is currently running in demo mode. Once connected to Google Gemini Pro, I'll be able to provide personalised recommendations and handle full conversational ordering.",
-    "Is there anything else I can help you with? I can recommend dishes, answer questions about the café, or guide you through placing an order.",
-  ];
+    "I'd recommend our Salt & Pepper Box — it's a Moss Park legend with ribs, wings, chicken, and chips. Can I add one to your order?",
+    "Our #85 Special Chow Mein is the most popular noodle dish. It comes with king prawn, chicken, and barbecued pork. Would you like to try it?",
+    "Evergreen Stretford is a family-run business on Barton Road. We've been part of the community since 1993, now powered by Sovereign Node 04 technology.",
+    "We serve a full range of Cantonese classics: Appetisers, Chef Specials, Munchie Boxes, and traditional Curries. What are you in the mood for?",
+    "Our Salt & Pepper Chips are tossed fresh with chilli and garlic. They go perfectly with our signature Curry Sauce pot.",
+    "The JARVIS system is currently in demo mode. Once our Threadripper node is fully synced tomorrow, I'll handle your order with zero-latency AI precision.",
+    "Need help with the menu? I can suggest the best combos for families or tell you exactly what's inside our Special Fried Rice."
 
   let responseIndex = 0;
 
