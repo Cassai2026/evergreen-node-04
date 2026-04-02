@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | Evergreen Stretford Sovereign Node</title>
+    <style>
+        :root {
+            --evergreen-red: #B22222;
+            --evergreen-gold: #D4AF37;
+            --sovereign-black: #0a0a0a;
+            --sovereign-white: #fdfdfd;
+            --card-bg: #161616;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', sans-serif;
+            background-color: var(--sovereign-black);
+            color: var(--sovereign-white);
+            padding-bottom: 80px; /* Space for sticky nav */
+        }
+
+        header {
+            padding: 40px 5% 20px;
+            border-bottom: 1px solid #333;
+            text-align: center;
+        }
+
+        h1 { color: var(--evergreen-gold); text-transform: uppercase; letter-spacing: 3px; }
+
+        /* --- CATEGORY TABS --- */
+        .tabs-container {
+            position: sticky;
+            top: 0;
+            background: var(--sovereign-black);
+            display: flex;
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 15px 5%;
+            border-bottom: 2px solid var(--evergreen-red);
+            z-index: 100;
+        }
+
+        .tab-btn {
+            background: none;
+            border: 1px solid #444;
+            color: #888;
+            padding: 10px 20px;
+            margin-right: 10px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tab-btn.active {
+            background: var(--evergreen-red);
+            color: white;
+            border-color: var(--evergreen-red);
+        }
+
+        /* --- MENU GRID --- */
+        .menu-section {
+            padding: 20px 5%;
+            display: none; /* Hidden by default */
+        }
+
+        .menu-section.active { display: block; }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+
+        .menu-item {
+            background: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid var(--evergreen-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .item-info h3 { margin: 0; font-size: 1rem; }
+        .item-info p { margin: 5px 0 0; font-size: 0.8rem; color: #aaa; }
+        .price { color: var(--evergreen-gold); font-weight: bold; font-size: 1.1rem; }
+
+        /* --- BACK BUTTON --- */
+        .back-nav { padding: 20px 5%; }
+        .back-link { color: var(--evergreen-gold); text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="back-nav">
+        <a href="index.html" class="back-link">← Return to Home</a>
+    </div>
+
+    <header>
+        <h1>Our Menu</h1>
+        <p>Hand-crafted by the Evergreen Family</p>
+    </header>
+
+    <div class="tabs-container">
+        <button class="tab-btn active" onclick="showTab('starters')">Starters</button>
+        <button class="tab-btn" onclick="showTab('main')">Main Dishes</button>
+        <button class="tab-btn" onclick="showTab('boxes')">Set Boxes</button>
+        <button class="tab-btn" onclick="showTab('sides')">Sides</button>
+    </div>
+
+    <section id="starters" class="menu-section active">
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Prawn Toast</h3>
+                    <p>Classic crispy prawn toast with sesame seeds.</p>
+                </div>
+                <div class="price">£5.50</div>
+            </div>
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Mini Spring Rolls (6)</h3>
+                    <p>Vegetarian crispy rolls served with sweet chilli.</p>
+                </div>
+                <div class="price">£4.20</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="boxes" class="menu-section">
+        <div class="menu-grid">
+            <div class="menu-item">
+                <div class="item-info">
+                    <h3>Salt & Pepper Box</h3>
+                    <p>The Moss Park Legend: Ribs, Wings, Chicken & Chips.</p>
+                </div>
+                <div class="price">£18.00</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function showTab(tabId) {
+            // Hide all sections
+            document.querySelectorAll('.menu-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            // Deactivate all buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            // Show selected section
+            document.getElementById(tabId).classList.add('active');
+            // Activate clicked button
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
