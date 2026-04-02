@@ -93,46 +93,38 @@ const API = {
     return this.fetch("/health");
   },
 };
-
 /* ============================================================
-   DEMO MENU DATA (used when API is unreachable)
+   SOVEREIGN MENU DATA (Evergreen Stretford Master List)
    ============================================================ */
 
 const DEMO_MENU = [
-  // Hot Drinks
-  { id: 1,  name: "Americano",       description: "Bold espresso with hot water",                        category: "Hot Drinks",  price: 2.50, available: 1 },
-  { id: 2,  name: "Flat White",      description: "Double ristretto with steamed milk",                  category: "Hot Drinks",  price: 3.00, available: 1 },
-  { id: 3,  name: "Latte",           description: "Espresso with velvety steamed milk",                  category: "Hot Drinks",  price: 2.90, available: 1 },
-  { id: 4,  name: "Cappuccino",      description: "Equal parts espresso, steamed milk, foam",            category: "Hot Drinks",  price: 2.90, available: 1 },
-  { id: 5,  name: "Hot Chocolate",   description: "Rich Belgian chocolate blend",                        category: "Hot Drinks",  price: 2.80, available: 1 },
-  { id: 6,  name: "Chai Latte",      description: "Spiced masala tea with steamed milk",                 category: "Hot Drinks",  price: 3.00, available: 1 },
-  // Cold Drinks
-  { id: 7,  name: "Iced Latte",      description: "Espresso over ice with cold milk",                    category: "Cold Drinks", price: 3.20, available: 1 },
-  { id: 8,  name: "Cold Brew",       description: "12-hour cold-steeped smooth coffee",                  category: "Cold Drinks", price: 3.50, available: 1 },
-  { id: 9,  name: "Lemonade",        description: "Freshly squeezed with sugar syrup",                   category: "Cold Drinks", price: 2.50, available: 1 },
-  { id: 10, name: "Mango Lassi",     description: "Yoghurt-based mango smoothie",                        category: "Cold Drinks", price: 3.00, available: 1 },
-  // Breakfast
-  { id: 11, name: "Full English",    description: "Bacon, eggs, sausage, beans, toast, mushrooms",       category: "Breakfast",   price: 7.50, available: 1 },
-  { id: 12, name: "Avocado Toast",   description: "Smashed avo on sourdough, chilli flakes",             category: "Breakfast",   price: 5.50, available: 1 },
-  { id: 13, name: "Bacon Butty",     description: "Back bacon in a soft white bap",                      category: "Breakfast",   price: 3.50, available: 1 },
-  { id: 14, name: "Pancakes",        description: "American-style with maple syrup and butter",          category: "Breakfast",   price: 5.50, available: 1 },
-  // Lunch
-  { id: 15, name: "Chicken Wrap",    description: "Grilled chicken, lettuce, tomato, mayo",              category: "Lunch",       price: 5.50, available: 1 },
-  { id: 16, name: "BLT Sandwich",    description: "Bacon, lettuce, tomato on malted brown bread",        category: "Lunch",       price: 4.50, available: 1 },
-  { id: 17, name: "Caesar Salad",    description: "Cos lettuce, croutons, parmesan, Caesar dressing",   category: "Lunch",       price: 6.00, available: 1 },
-  { id: 18, name: "Veggie Burger",   description: "Beyond Meat patty, brioche bun, all the trimmings",  category: "Lunch",       price: 8.00, available: 1 },
-  // Cakes
-  { id: 19, name: "Victoria Sponge", description: "Light sponge, strawberry jam, vanilla buttercream",  category: "Cakes",       price: 3.50, available: 1 },
-  { id: 20, name: "Brownie",         description: "Fudgy dark chocolate brownie square",                 category: "Cakes",       price: 2.50, available: 1 },
-  { id: 21, name: "Scone",           description: "Plain scone with clotted cream and jam",              category: "Cakes",       price: 3.00, available: 1 },
-  { id: 22, name: "Lemon Drizzle",   description: "Moist lemon cake with sugar glaze",                  category: "Cakes",       price: 3.00, available: 1 },
-  // Snacks
-  { id: 23, name: "Mixed Nuts",      description: "Roasted and salted mixed nut bag",                    category: "Snacks",      price: 2.00, available: 1 },
-  { id: 24, name: "Nakd Bar",        description: "Natural fruit and nut bar",                           category: "Snacks",      price: 1.50, available: 1 },
-  // Kids
-  { id: 25, name: "Mini Pizza",      description: "Personal-size pizza with tomato and mozzarella",     category: "Kids",        price: 4.00, available: 1 },
-  { id: 26, name: "Nuggets & Chips", description: "5 crispy chicken nuggets with skinny fries",         category: "Kids",        price: 4.50, available: 1 },
+  // Appetisers
+  { id: 11, name: "#11 Aromatic Crispy Duck (1/4)", description: "Served with 6 pancakes, salad & Hoi Sin sauce", category: "Appetisers", price: 11.50, available: 1 },
+  { id: 1, name: "Sesame Prawn Toast", description: "Handmade crispy minced prawn on bread", category: "Appetisers", price: 8.00, available: 1 },
+  { id: 2, name: "Salt & Pepper Spare Ribs", description: "Tossed with fresh chilli, garlic & onions", category: "Appetisers", price: 8.50, available: 1 },
+  { id: 3, name: "Mini Veg Spring Rolls (12)", description: "Crispy handmade vegetarian rolls", category: "Appetisers", price: 4.00, available: 1 },
+  
+  // Set Boxes
+  { id: 100, name: "The Salt & Pepper Box", description: "Ribs, Wings, S&P Chicken, Spring Rolls, Chips/Rice, Sauce", category: "Set Boxes", price: 18.00, available: 1 },
+  { id: 101, name: "Mini S&P Box", description: "Wings, S&P Chicken, Spring Rolls, Chips, Sauce", category: "Set Boxes", price: 9.20, available: 1 },
+
+  // Chef Specials
+  { id: 20, name: "Crispy Shredded Chilli Beef", description: "Thin strips in sweet & spicy Cantonese sauce", category: "Chef Specials", price: 7.80, available: 1 },
+  { id: 21, name: "Chicken with Cashew Nuts", description: "Stir-fried with water chestnuts and vegetables", category: "Chef Specials", price: 8.70, available: 1 },
+
+  // Rice & Noodles
+  { id: 85, name: "#85 Special Chow Mein", description: "King prawn, chicken, pork & traditional gravy", category: "Rice & Noodles", price: 8.40, available: 1 },
+  { id: 30, name: "Singapore Fried Rice", description: "Spicy with prawns, chicken, pork and curry powder", category: "Rice & Noodles", price: 8.10, available: 1 },
+  
+  // Curries
+  { id: 40, name: "Chicken Curry", description: "Authentic Evergreen secret recipe", category: "Curries", price: 8.30, available: 1 },
+  { id: 41, name: "King Prawn Curry", description: "Large prawns with peas and onions", category: "Curries", price: 8.80, available: 1 },
+
+  // Sides
+  { id: 50, name: "Salt & Pepper Chips", description: "The Stretford Classic", category: "Sides", price: 5.00, available: 1 },
+  { id: 51, name: "Curry Sauce Pot", description: "Large pot of signature sauce", category: "Sides", price: 2.60, available: 1 }
 ];
+
 
 /* ============================================================
    MENU MODULE
